@@ -17,7 +17,6 @@
         }
         .cparea{
 	text-align: center;
-	font-family: Microsoft Yahei;
 	margin: -2em 0 0;
 }
 .kwd{
@@ -57,7 +56,6 @@
      var r = window.location.search.substr(1).match(reg);
      if(r!=null)return  unescape(r[2]); return null;
       }
-      alert(GetQueryString("id"));
       $("#kwd").bind("taphold", function(){ //不支持iPhone/iTouch/iPad Safari  
     var doc = document,   
         text = doc.getElementById("kwd"),  
