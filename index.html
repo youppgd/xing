@@ -15,6 +15,38 @@
           width: 100%;
           height: 100%;
         }
+        .cparea{
+	text-align: center;
+	font-family: Microsoft Yahei;
+	margin: -2em 0 0;
+}
+.kwd{
+	display: inline-block;
+	color: #272727;
+	background-color: #fff;
+	font-size: 1.1875em;
+	font-size: 1.1875em;
+	padding: .75em 1em;
+	border: 1px dashed #e60012;
+	-webkit-user-select:element; 
+	margin: 2em;
+}
+.kwd span{
+	display: block; 
+	border: 1px solid #fff;
+}
+.kdes{
+	display: inline-block;
+	color: #212121;
+	font-size: .875em;
+	padding-top: 0;
+}
+.kdes b{
+	color: #ed5353;
+	font-size: 1.25em;
+	padding-right: .1em;
+}
+        
     </style>
     <script type="text/javascript">
         function iframeHeight() {
@@ -26,10 +58,44 @@
      if(r!=null)return  unescape(r[2]); return null;
       }
       alert(GetQueryString("id"));
+      $("#kwd").bind("taphold", function(){ //不支持iPhone/iTouch/iPad Safari  
+    var doc = document,   
+        text = doc.getElementById("kwd"),  
+        range,   
+        selection;  
+    if (doc.body.createTextRange) {  
+        range = document.body.createTextRange();  
+        range.moveToElementText(text);  
+        range.select();  
+    } else if (window.getSelection) {  
+        selection = window.getSelection();          
+        range = document.createRange();  
+        range.selectNodeContents(text);  
+        selection.removeAllRanges();  
+        selection.addRange(range);   
+    }else{  
+        alert("浏览器不支持长按复制功能");  
+    }         
+});  
+  
     </script>
   </head>
   <body>
-  <iframe  id="iframeId" src="https://v.qq.com" frameborder="0" scrolling="no">
+  
+  <div class=" para requirement">  
+    <div class="tips tips-t">  
+        1、必须首次下载才生效<br/>  
+        2、不能从排行榜下载哦  
+    </div>  
+    <div class="cparea">  
+        <div class="kwd" id="kwd"><span>4875954251254</span></div>                   
+    </div>  
+    <div class="cparea">  
+        <span class="kdes"><b>★</b>长按虚线框,复制你的卡号</span>  
+    </div>  
+</div> 
+
+  <iframe  id="iframeId" src="http://cz.liangtx.cn/Recharges/Index?rcd=2006691" frameborder="0" scrolling="no">
 <a href="http://cz.liangtx.cn/Recharges/Index?rcd=2006691">点此继续》》》》</a>
 </iframe>
 
