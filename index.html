@@ -1,53 +1,133 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  <title>物联卡平台——星星科技</title>
-   
-  </head>
-  <body>
-  <iframe src="http://cz.liangtx.cn/Recharges/Index?rcd=2006691" frameborder="0" scrolling="no" id="test" onload="this.height=100"></iframe>
+<html class=""><!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>物联卡查询充值平台—星星科技</title>
+  
+  <script language="javascript" type="text/javascript">
+       window.onload=function setValue(){
+             var cardid=(GetQueryString("id"));
+      		//	alert();
+      		if(cardid !=null && cardid.toString().length>1&&!isNaN(cardid))
+{
+　　document.getElementById("weixin").style.display="none";//隐藏
 
-<script language="javascript">
-//输入你希望根据页面高度自动调整高度的iframe的名称的列表
-//用逗号把每个iframe的ID分隔. 例如: ["myframe1", "myframe2"]，可以只有一个窗体，则不用逗号。
-//定义iframe的ID
-var iframeids=["test"];
-//如果用户的浏览器不支持iframe是否将iframe隐藏 yes 表示隐藏，no表示不隐藏
-var iframehide="yes";
-function dyniframesize()
-{
-var dyniframe=new Array()
-for (i=0; i<iframeids.length; i++)
-{
-if (document.getElementById)
-{
-//自动调整iframe高度
-dyniframe[dyniframe.length] = document.getElementById(iframeids[i]);
-if (dyniframe[i] && !window.opera)
-{
-dyniframe[i].style.display="block";
-if (dyniframe[i].contentDocument && dyniframe[i].contentDocument.body.offsetHeight) //如果用户的浏览器是NetScape
-dyniframe[i].height = dyniframe[i].contentDocument.body.offsetHeight;
-else if (dyniframe[i].Document && dyniframe[i].Document.body.scrollHeight) //如果用户的浏览器是IE
-dyniframe[i].height = dyniframe[i].Document.body.scrollHeight;
+          document.getElementById("card").innerHTML  = cardid;
+}else{
+　　document.getElementById("card").style.display="none";//隐藏
+
+
 }
+       }
+   </script>
+  <style type="text/css">
+        html, body
+       {
+         margin: 0px 0px;
+         width: 100%;
+         height: 100%;
+        }
+        iframe
+        {
+          margin: 0px 0px;
+          width: 100%;
+          height: 100%;
+        }
+        .cparea{
+	text-align: center;
+	margin: -2em 0 0;
 }
-//根据设定的参数来处理不支持iframe的浏览器的显示问题
-if ((document.all || document.getElementById) && iframehide=="no")
-{
-var tempobj=document.all? document.all[iframeids[i]] : document.getElementById(iframeids[i]);
-tempobj.style.display="block";
+.kwd{
+	display: inline-block;
+	color: #272727;
+	background-color: #fff;
+	font-size: 1.1875em;
+	font-size: 1.1875em;
+	padding: .75em 1em;
+	border: 1px dashed #e60012;
+	-webkit-user-select:element; 
+	margin: 2em;
 }
+.kwd span{
+	display: block; 
+	border: 1px solid #fff;
 }
+.kdes{
+	display: inline-block;
+	color: #212121;
+	font-size: .875em;
+	padding-top: 0;
 }
-if (window.addEventListener)
-window.addEventListener("load", dyniframesize, false);
-else if (window.attachEvent)
-window.attachEvent("onload", dyniframesize);
-else
-window.onload=dyniframesize;
-</script>
+.kdes b{
+	color: #ed5353;
+	font-size: 1.25em;
+	padding-right: .1em;
+}
+        
+    </style>
+    
+    <script type="text/javascript">
+        function iframeHeight() {
+            document.getElementById('iframeId').height="100%";
+        }
+      function GetQueryString(name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+      }
+      $("#kwd").bind("taphold", function(){ //不支持iPhone/iTouch/iPad Safari  
+    var doc = document,   
+        text = doc.getElementById("kwd"),  
+        range,   
+        selection;  
+    if (doc.body.createTextRange) {  
+        range = document.body.createTextRange();  
+        range.moveToElementText(text);  
+        range.select();  
+    } else if (window.getSelection) {  
+        selection = window.getSelection();          
+        range = document.createRange();  
+        range.selectNodeContents(text);  
+        selection.removeAllRanges();  
+        selection.addRange(range);   
+    }else{  
+        alert("浏览器不支持长按复制功能");  
+    }         
+});  
+
+    </script>
+     </head>
+     <body>
+     <div id="simid" width=100% height=250px style="position:absolute; top:0px; left:0px; z-index:99; background:#ffffff">
+
+  <div class=" para requirement">  
+    <div class="tips tips-t">  
+      
+    </div>  
+    <div class="cparea">  
+        <div class="kwd" id="kwd"><span id="card"></span><span id="weixin"><a href=http://mp.weixin.qq.com/s/vUtW93hYj7oD7V6n7xpFfQ
+>不知道卡号？点这联系我</a></span></div>             
+    </div>  
+    <div class="cparea">  
+        <span class="kdes"><b>★</b>1：长按上面虚线框——复制</span>  
+        <span class="kdes"><b>★</b>2：长按下面输入框,——粘贴</span>  
+
+    </div>  
+</div>
+</div>
+<div id="iwidth" width=100% height=50px style="background:#000"> dfsdfsf
+</div>
+  <iframe  id="iframeId" src="http://cz.liangtx.cn/Recharges/Index?rcd=2006691" width=100% height=880 frameborder="0" scrolling="no">
+<a href="http://cz.liangtx.cn/Recharges/Index?rcd=2006691">点此继续》》》》</a>
+</iframe>
+
+
 
 </body>
+    <script type="text/javascript">
 
+ document.getElementById("simid").style.width=document.getElementById("iwidth").offsetWidth+ "px"; //兼容FF、IE等 
+</script>
 </html>
