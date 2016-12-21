@@ -88,7 +88,7 @@ $(function(){
 	$('.playuser').html(playuser);
 	$('.playnum').html(playnum);
 	var i=null;//初始位置，
-	var speed=10;//转动速度
+	var speed=100;//转动速度
 	var data = [];
 	var dnum=0;
 	var num=[1,5,2,3,4,5,10,15,10,15,20,20];//110
@@ -102,7 +102,7 @@ $(function(){
 	var ok=null;//产生0-11的整数，标记中奖位置
 	var count=null;//总变化次数
 	var nowcount=null;//当前的变化位置
-	var n=2;//圈数
+	var n=4;//圈数
 	var paly=false;
 	var xq=0;
 	function dong(){//利用递归模拟setinterval的实现		
@@ -116,7 +116,7 @@ $(function(){
 			if(i>10){	
 				xq+=1;	
 				if(xq==n-1){
-					speed=20;
+					speed=250;
 				};	
 				$(".lottery-unit").removeClass("select");
 				$(".lottery-unit-11").addClass("select");
@@ -177,7 +177,8 @@ $(function(){
 	}
 	$(".start").click(function(){
 		if(!paly){
-			speed=10;//转动速度
+			speed=100;//转动速度
+			xq=0;
 			if(playnum==0){
 				alert("已经没有机会，下次再来！");
 			}else{
