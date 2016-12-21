@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class=""><!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+    <title>九宫格大转盘</title>
+    <style type="text/css">
+/*reset*/
+*{ padding:0; margin:0}
+body{ height: 100%; width: 100%; font-size:12px; color:#333;}
+ul{ list-style:none;}
+/*demo*/
+#lottery{width:360px;height:360px;margin:20px auto 0; position:relative;}
+#lottery div{width:90px;height:90px;text-align:center;font-size:20px;color:#333; float:left;}
+#lottery .cent{ background:#C33;}
+#lottery .lottery-unit-0{ background:#80FF80;}
+#lottery .lottery-unit-1{ background:#F99;}
+#lottery .lottery-unit-2{ background:#80FF80;}
+#lottery .lottery-unit-3{ background:#F99;}
+#lottery .lottery-unit-4{ background:#80FF80;}
+#lottery .lottery-unit-5{ background:#F99;}
+#lottery .lottery-unit-6{ background:#80FF80;}
+#lottery .lottery-unit-7{ background:#F99;}
+#lottery .lottery-unit-8{ background:#80FF80;}
+#lottery .lottery-unit-9{ background:#F99;}
+#lottery .lottery-unit-10{ background:#80FF80;}
+#lottery .lottery-unit-11{ background:#F99;}
+
+#lottery div.select{background:#F0F;}
+
+#lottery .start{ position:absolute; left:90px; top:90px; height:180px; width:180px;background:#C33; font-size:30px; text-align:center; cursor:pointer; line-height:180px; color:#fff;}
+</style>
+</style>
+</head>
+<body>   
+	<!--九宫格大转盘-->
+		<h2><center>当前有<span class="playnum"></span>次抽奖机会，请点击抽奖！~</center></h2>
+    <div id="lottery">
+        
+        <div class="lottery-unit lottery-unit-0"></br>插卡音箱</div>
+        <div class="lottery-unit lottery-unit-1"></br>联通流量卡</div>
+        <div class="lottery-unit lottery-unit-2"></br>耳机</div>
+        <div class="lottery-unit lottery-unit-3"></br>数据线</div>
+        
+        <div class="lottery-unit lottery-unit-11"></br>恭喜发财</div>            
+        <div class="cent"></div>
+        <div class="cent"></div>            
+        <div class="lottery-unit lottery-unit-4"></br>红米手机壳</div>
+        
+        <div class="lottery-unit lottery-unit-10"></br>万事如意</div>            
+        <div class="cent"></div>
+        <div class="cent"></div>            
+        <div class="lottery-unit lottery-unit-5"></br>音箱10元优惠券</div>
+    
+        <div class="lottery-unit lottery-unit-9"></br>心想事成</div>
+        <div class="lottery-unit lottery-unit-8"></br>五福临门</div>
+        <div class="lottery-unit lottery-unit-7"></br>流量卡5元优惠券</div>
+        <div class="lottery-unit lottery-unit-6"></br>财源广进</div>
+
+        <div class="start" id="start">抽奖</div>
+    </div>
+    <h2><center><span class="playuser"></span></br><span class="jiang"></span></center></h2>
+ 
+</body>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+function GetQueryString(name){
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+      }
+$(function(){
+	//九宫格大转盘
+	var jiang="";
+	var playuser=GetQueryString("pu");//可用次数	
+	var playnum=GetQueryString("pn");//可用次数	
+	if(playuser !=null && playuser.toString().length>0){
+	}else{
+		playuser="未知用户";
+	}
+	if(playnum !=null && playnum.toString().length>0&&!isNaN(playnum)){
+	}else{
+		playnum=0;
+	}
+	$('.playuser').html(playuser);
+	$('.playnum').html(playnum);
+	var i=null;//初始位置，
+	var speed=10;//转动速度
+	var data = [];
+	var dnum=0;
+	var num=[1,5,2,3,4,5,10,15,10,15,20,20];//110
+	
+	for(var j=0;j<12;j++){ 
+		for(var k=0;k<num[j];k++){
+		data[dnum++]=j;
+		}
+	}
+
+	var ok=null;//产生0-11的整数，标记中奖位置
+	var count=null;//总变化次数
+	var nowcount=null;//当前的变化位置
+	var n=2;//圈数
+	var paly=false;
+	var xq=0;
+	function dong(){//利用递归模拟setinterval的实现		
+		if(nowcount>count){
+			setTimeout(function(){
+				paly=false;
+				alertFunc(ok);
+			},200);
+		}else{			
+			nowcount+=1;
+			if(i>10){	
+				xq+=1;	
+				if(xq==n-1){
+					speed=20;
+				};	
+				$(".lottery-unit").removeClass("select");
+				$(".lottery-unit-11").addClass("select");
+				i=0;
+			}else{
+				$(".lottery-unit").removeClass("select");
+				$(".lottery-unit-"+i).addClass("select");
+				i+=1;
+			};
+			setTimeout(dong,speed);	
+		};			
+		
+	};	
+		var alertFunc = function(id) {
+		var text="奖品";
+		switch(id) {
+			case 0:
+				text="恭喜您获得《插卡音箱》";
+				break;
+			case 1:
+				text="恭喜您获得《联通流量卡》";
+				break;
+			case 2:
+				text="恭喜您获得《耳机》";
+				break;	
+			case 3:
+				text="恭喜您获得《数据线》";
+				break;	
+			case 4:
+				text="恭喜您获得《红米手机壳》";
+				break;
+			case 5:
+				text="恭喜您获得《音箱10元优惠券》";
+				break;	
+			case 6:
+				text="财源广进！！！";
+				break;	
+			case 7:
+				text="恭喜您获得《流量卡5元优惠券》";
+				break;	
+			case 8:
+				text="五福临门！！！";
+				break;	
+			case 9:
+				text="心想事成！！！";
+				break;	
+			case 10:
+				text="万事如意！！！";
+				break;	
+			case 11:
+				text="恭喜发财！！！";
+				break;	
+				}
+		alert(text);
+		jiang=jiang+"</br>"+text;
+	$('.jiang').html(jiang);
+
+	}
+	$(".start").click(function(){
+		if(!paly){
+			speed=10;//转动速度
+			if(playnum==0){
+				alert("已经没有机会，下次再来！");
+			}else{
+				
+				ok = data[Math.floor(Math.random() * data.length)];			
+			//	ok=Math.floor((Math.random()*12));//产生0-11的整数，标记中奖位置
+				count=n*12+ok;//总变化次数
+				nowcount=0;//当前的变化位置
+				i=0;//初始位置，
+				paly=true;
+				playnum-=1;
+				$('.playnum').html(playnum);
+				dong();
+			};
+			
+		}else{
+			
+		};
+		
+	});		
+});
+</script>
+</html>
